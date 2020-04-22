@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Codice Fiscale</string>
+    <string name="codice_fiscale_sconosciuto">\??? ??? ?? ? ?? ???? ?</string>
+    <string name="codice_fiscale">Codice Fiscale</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="comune_di_nascita">Comune di nascita</string>
+    <string name="data_di_nascita">Data di nascita</string>
+    <string name="sesso">Sesso</string>
+    <string name="calcola">Calcola</string>
+
+    <string-array name="scelta_sesso">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
+</resources>
