@@ -98,11 +98,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/comune_di_nascita"
-                    android:labelFor="@id/campo_luogo_nascita"/>
+                    android:labelFor="@id/campo_comune_nascita"/>
 
                 <AutoCompleteTextView
                     android:completionThreshold="2"
-                    android:id="@+id/campo_luogo_nascita"
+                    android:id="@+id/campo_comune_nascita"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 

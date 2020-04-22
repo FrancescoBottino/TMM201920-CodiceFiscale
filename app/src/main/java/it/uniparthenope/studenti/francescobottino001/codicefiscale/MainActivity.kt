@@ -3,6 +3,7 @@ package it.uniparthenope.studenti.francescobottino001.codicefiscale
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import it.uniparthenope.studenti.francescobottino001.codicefiscale.CodiceFiscaleQuery.Companion.calcolaCodiceFiscale
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            (it as EditText).error = null
+
             DatePickerDialog(
                 this@MainActivity,
                 OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -48,6 +51,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         submit_button.setOnClickListener {
+            var errori = false
+
+            for( pair in arrayOf(
+                campo_nome to R.string.errore_nome_vuoto,
+                campo_cognome to R.string.errore_cognome_vuoto,
+                campo_comune_nascita to R.string.errore_comune_nascita_vuoto,
+                campo_data_nascita to R.string.errore_data_nascita_vuoto
+            )) {
+                if( pair.first.text.toString().isEmpty() ) {
+                    pair.first.error = getString(pair.second)
+                    errori = true
+                }
+            }
+
+            if( errori ) return@setOnClickListener
+
             if (!loading) {
                 GlobalScope.launch {
                     if (ConnectivityCheck.hasInternetConnected(this@MainActivity)) {
@@ -56,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                                 calcolaCodiceFiscale(
                                     campo_nome.text.toString(),
                                     campo_cognome.text.toString(),
-                                    campo_luogo_nascita.text.toString(),
+                                    campo_comune_nascita.text.toString(),
                                     campo_data_nascita.text.toString(),
                                     campo_sesso.selectedItem.toString()
                                 )
@@ -80,6 +99,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        campo_luogo_nascita.setAdapter(ComuneListAdapter(this, R.layout.item_comune, ArrayList()))
+        campo_comune_nascita.setAdapter(ComuneListAdapter(this, R.layout.item_comune, ArrayList()))
     }
 }

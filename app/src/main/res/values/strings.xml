@@ -8,6 +8,10 @@
     <string name="data_di_nascita">Data di nascita</string>
     <string name="sesso">Sesso</string>
     <string name="calcola">Calcola</string>
+    <string name="errore_nome_vuoto">Inserisci nome</string>
+    <string name="errore_cognome_vuoto">Inserisci cognome</string>
+    <string name="errore_comune_nascita_vuoto">Inserisci comune di nascita</string>
+    <string name="errore_data_nascita_vuoto">Inserisci data di nascita</string>
 
     <string-array name="scelta_sesso">
         <item>M</item>
