@@ -92,18 +92,23 @@ class MainActivity : AppCompatActivity() {
                             )
                         } catch (e: Exception) {
                             e.printStackTrace()
-                            Toast.makeText(
-                                this@MainActivity,
-                                "HTTP Request error",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            runOnUiThread(Thread(Runnable {
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "HTTP Request error",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }))
+
                         }
                     } else {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Internet connection required",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        runOnUiThread(Thread(Runnable {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Internet connection required",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }))
                     }
                 }
             }
