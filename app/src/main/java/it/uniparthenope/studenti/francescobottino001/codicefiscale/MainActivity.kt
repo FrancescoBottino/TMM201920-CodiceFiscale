@@ -3,6 +3,7 @@ package it.uniparthenope.studenti.francescobottino001.codicefiscale
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if( savedInstanceState != null ) {
+            campo_codice_fiscale.setText(savedInstanceState.getString("codice fiscale"))
+            campo_nome.setText(savedInstanceState.getString("nome"))
+            campo_cognome.setText(savedInstanceState.getString("cognome"))
+            campo_data_nascita.setText(savedInstanceState.getString("data"))
+            campo_comune_nascita.setText(savedInstanceState.getString("comune"))
+            campo_sesso.setSelection(savedInstanceState.getInt("sesso"))
+        }
 
         campo_data_nascita.setOnClickListener {
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN)
@@ -100,5 +110,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         campo_comune_nascita.setAdapter(ComuneListAdapter(this, R.layout.item_comune, ArrayList()))
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+
+        outState.putString("codice fiscale",campo_codice_fiscale.text.toString())
+        outState.putString("nome",campo_nome.text.toString())
+        outState.putString("cognome",campo_cognome.text.toString())
+        outState.putString("data",campo_data_nascita.text.toString())
+        outState.putString("comune",campo_comune_nascita.text.toString())
+        outState.putInt("sesso",campo_sesso.selectedItemPosition)
     }
 }
